@@ -1,29 +1,144 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ProductCard } from "@/components/ProductCard";
+import { products } from "@/lib/products";
+import logo from "@/assets/logo.png";
+import hoodieRed from "@/assets/hoodie-red.jpg";
+import teeWhite from "@/assets/tee-white.jpg";
+import hoodieWhite from "@/assets/hoodie-white.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "YIKES — Loud streetwear, worn proud" },
+      {
+        name: "description",
+        content:
+          "Heavyweight tees and hoodies with ransom-note graphics. New drop now shipping internationally.",
+      },
+      { property: "og:title", content: "YIKES — Loud streetwear" },
+      {
+        property: "og:description",
+        content: "Heavyweight tees and hoodies. Shipping worldwide.",
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen flex flex-col">
+      <SiteHeader />
+
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-6 pt-10 pb-20 sm:pt-16 sm:pb-28">
+            <div className="grid grid-cols-3 items-center gap-4 sm:gap-8">
+              <img
+                src={hoodieWhite}
+                alt=""
+                width={500}
+                height={500}
+                className="hidden sm:block rounded-2xl rotate-[-8deg] shadow-xl"
+              />
+              <div className="col-span-3 sm:col-span-1 text-center">
+                <img
+                  src={logo}
+                  alt="YIKES"
+                  width={600}
+                  height={300}
+                  className="mx-auto w-full max-w-sm drop-shadow-[0_8px_0_rgba(0,0,0,0.15)]"
+                />
+                <p className="mt-6 font-display text-2xl sm:text-3xl text-foreground leading-tight">
+                  loud streetwear,<br />worn proud.
+                </p>
+                <a
+                  href="#shop"
+                  className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-base font-bold text-primary-foreground shadow-lg hover:scale-105 transition-transform"
+                >
+                  Shop the drop
+                </a>
+              </div>
+              <img
+                src={hoodieRed}
+                alt=""
+                width={500}
+                height={500}
+                className="hidden sm:block rounded-2xl rotate-[6deg] shadow-xl"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Marquee strip */}
+        <div className="bg-foreground text-background py-3 overflow-hidden">
+          <div className="flex gap-12 whitespace-nowrap animate-[marquee_25s_linear_infinite] font-display text-xl">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} className="flex items-center gap-12">
+                NEW DROP
+                <span className="text-pop-yellow">★</span>
+                FREE SHIPPING OVER £80
+                <span className="text-pop-pink">★</span>
+                WORLDWIDE
+                <span className="text-pop-green">★</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Shop grid */}
+        <section id="shop" className="mx-auto max-w-7xl px-6 py-20">
+          <div className="mb-10 text-center">
+            <h2 className="font-display text-4xl sm:text-5xl">The collection</h2>
+            <p className="mt-2 text-muted-foreground">Limited runs. Built to last.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </div>
+        </section>
+
+        {/* Lookbook strip */}
+        <section className="mx-auto max-w-7xl px-6 pb-20">
+          <div className="rounded-3xl bg-foreground text-background overflow-hidden grid grid-cols-1 md:grid-cols-2">
+            <div className="p-10 sm:p-14 flex flex-col justify-center">
+              <span className="text-sm font-semibold uppercase tracking-widest text-pop-yellow">
+                Worn by you
+              </span>
+              <h3 className="mt-3 font-display text-4xl sm:text-5xl leading-none">
+                Tag us<br />#yikesfit
+              </h3>
+              <p className="mt-4 text-background/70 max-w-md">
+                Send us your fit. The best ones get featured on the site and a free
+                drop from the next collection.
+              </p>
+            </div>
+            <div className="relative aspect-square md:aspect-auto">
+              <img
+                src={teeWhite}
+                alt="Lookbook"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
     </div>
   );
 }
