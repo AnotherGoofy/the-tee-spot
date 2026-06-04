@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/orvani-logo.png.asset.json";
 import hoodieRed from "@/assets/hoodie-red.jpg";
 import teeWhite from "@/assets/tee-white.jpg";
 import hoodieWhite from "@/assets/hoodie-white.jpg";
@@ -46,11 +46,11 @@ function Index() {
               />
               <div className="col-span-3 sm:col-span-1 text-center">
                 <img
-                  src={logo}
-                  alt="YIKES"
+                  src={logo.url}
+                  alt="ORVANI"
                   width={600}
                   height={300}
-                  className="mx-auto w-full max-w-sm drop-shadow-[0_8px_0_rgba(0,0,0,0.15)]"
+                  className="mx-auto w-full max-w-sm"
                 />
                 <p className="mt-6 font-display text-2xl sm:text-3xl text-foreground leading-tight">
                   loud streetwear,<br />worn proud.
