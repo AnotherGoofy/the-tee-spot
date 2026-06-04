@@ -82,7 +82,7 @@ function Index() {
                 <span className="text-pop-yellow">★</span>
                 FREE SHIPPING OVER £80
                 <span className="text-pop-pink">★</span>
-                WORLDWIDE
+                UK ONLY
                 <span className="text-pop-green">★</span>
               </span>
             ))}
@@ -110,7 +110,7 @@ function Index() {
                 Worn by you
               </span>
               <h3 className="mt-3 font-display text-4xl sm:text-5xl leading-none">
-                Tag us<br />#yikesfit
+                Tag us<br />#orvanifit
               </h3>
               <p className="mt-4 text-background/70 max-w-md">
                 Send us your fit. The best ones get featured on the site and a free

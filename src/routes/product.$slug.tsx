@@ -16,13 +16,13 @@ export const Route = createFileRoute("/product/$slug")({
     return {
       meta: p
         ? [
-            { title: `${p.name} — YIKES` },
+            { title: `${p.name} — ORVANI` },
             { name: "description", content: p.tagline },
             { property: "og:title", content: p.name },
             { property: "og:description", content: p.tagline },
             { property: "og:image", content: p.image },
           ]
-        : [{ title: "Product — YIKES" }],
+        : [{ title: "Product — ORVANI" }],
     };
   },
   component: ProductPage,
