@@ -15,36 +15,36 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "yikes-boxy-tee",
-    name: "\"YIKES\" Heavyweight Boxy Tee",
+    slug: "boxy-tee",
+    name: "Heavyweight Boxy Tee",
     price: 28,
     compareAt: 42,
     image: teeWhite,
-    tagline: "this t-shirt is so yikes!",
+    tagline: "this tee hits different.",
     description:
       "Made from heavyweight 7.6 oz 100% combed cotton, this tee features a boxy, slightly cropped fit with longer sleeves. Pigment-dyed for a naturally worn-in look that gets softer with every wear.",
     sizes: ["S", "M", "L", "XL"],
   },
   {
     slug: "iconic-red-hoodie",
-    name: "Iconic Red YIKES Hoodie",
+    name: "Iconic Red Hoodie",
     price: 58,
     compareAt: 72,
     image: hoodieRed,
     tagline: "the one everyone's wearing.",
     description:
-      "Heavyweight fleece pullover with kangaroo pocket and ribbed cuffs. Oversized fit, ransom-note collage chest graphic, built to outlast trends.",
+      "Heavyweight fleece pullover with kangaroo pocket and ribbed cuffs. Oversized fit, built to outlast trends.",
     sizes: ["S", "M", "L", "XL"],
   },
   {
-    slug: "yikes-streetwear-hoodie",
-    name: "\"YIKES\" Streetwear Hoodie",
+    slug: "streetwear-hoodie",
+    name: "Streetwear Hoodie",
     price: 58,
     compareAt: 72,
     image: hoodieWhite,
     tagline: "soft. heavy. yours.",
     description:
-      "Premium brushed-back fleece in a clean off-white. Drop-shoulder cut, double-lined hood, signature logo on the chest.",
+      "Premium brushed-back fleece in a clean off-white. Drop-shoulder cut, double-lined hood, minimal chest detail.",
     sizes: ["S", "M", "L", "XL"],
   },
 ];
