@@ -11,16 +11,16 @@ import hoodieWhite from "@/assets/hoodie-white.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "YIKES — Loud streetwear, worn proud" },
+      { title: "ORVANI — Loud streetwear, worn proud" },
       {
         name: "description",
         content:
-          "Heavyweight tees and hoodies with ransom-note graphics. New drop now shipping internationally.",
+          "Heavyweight tees and hoodies. New drop now available.",
       },
-      { property: "og:title", content: "YIKES — Loud streetwear" },
+      { property: "og:title", content: "ORVANI — Loud streetwear" },
       {
         property: "og:description",
-        content: "Heavyweight tees and hoodies. Shipping worldwide.",
+        content: "Heavyweight tees and hoodies.",
       },
     ],
   }),
