@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Search, ShoppingBag } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/orvani-logo.png.asset.json";
 
 export function SiteHeader() {
   return (
@@ -11,7 +11,7 @@ export function SiteHeader() {
       <header className="w-full">
         <div className="mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-6 py-4">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="YIKES" className="h-12 w-auto" width={160} height={48} />
+            <img src={logo.url} alt="ORVANI" className="h-10 w-auto" width={160} height={40} />
           </Link>
           <nav className="hidden sm:flex items-center gap-8">
             <Link
