@@ -11,16 +11,16 @@ import hoodieWhite from "@/assets/hoodie-white.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "YIKES — Loud streetwear, worn proud" },
+      { title: "ORVANI — Loud streetwear, worn proud" },
       {
         name: "description",
         content:
-          "Heavyweight tees and hoodies with ransom-note graphics. New drop now shipping internationally.",
+          "Heavyweight tees and hoodies. New drop now available.",
       },
-      { property: "og:title", content: "YIKES — Loud streetwear" },
+      { property: "og:title", content: "ORVANI — Loud streetwear" },
       {
         property: "og:description",
-        content: "Heavyweight tees and hoodies. Shipping worldwide.",
+        content: "Heavyweight tees and hoodies.",
       },
     ],
   }),
@@ -82,7 +82,7 @@ function Index() {
                 <span className="text-pop-yellow">★</span>
                 FREE SHIPPING OVER £80
                 <span className="text-pop-pink">★</span>
-                WORLDWIDE
+                UK ONLY
                 <span className="text-pop-green">★</span>
               </span>
             ))}
@@ -110,7 +110,7 @@ function Index() {
                 Worn by you
               </span>
               <h3 className="mt-3 font-display text-4xl sm:text-5xl leading-none">
-                Tag us<br />#yikesfit
+                Tag us<br />#orvanifit
               </h3>
               <p className="mt-4 text-background/70 max-w-md">
                 Send us your fit. The best ones get featured on the site and a free
