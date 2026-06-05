@@ -73,17 +73,6 @@ function Index() {
           </div>
         </section>
 
-        {/* Marquee strip */}
-        <div className="bg-foreground text-background py-3 overflow-hidden">
-          <div className="flex gap-12 whitespace-nowrap animate-[marquee_25s_linear_infinite] font-display text-xl">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-12">
-                FREE SHIPPING OVER £80
-                <span className="text-pop-pink">★</span>
-              </span>
-            ))}
-          </div>
-        </div>
 
         {/* Shop grid */}
         <section id="shop" className="mx-auto max-w-7xl px-6 py-20">
