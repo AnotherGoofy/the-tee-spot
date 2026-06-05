@@ -107,17 +107,6 @@ function ProductPage() {
               Unavailable
             </button>
 
-            <div className="mt-8 rounded-2xl bg-secondary/60 p-5 text-sm text-muted-foreground space-y-3">
-              <p>
-                <span className="font-bold text-foreground">Color bleeding warning:</span>{" "}
-                pigment-dyed garments may bleed in the first wash. Wash separately in cold
-                water.
-              </p>
-              <p>
-                <span className="font-bold text-foreground">International customers:</span>{" "}
-                customs fees on arrival are the buyer's responsibility.
-              </p>
-            </div>
           </div>
         </div>
 
