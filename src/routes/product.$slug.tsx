@@ -100,18 +100,27 @@ function ProductPage() {
               </div>
             </div>
 
-            <button
-              onClick={() =>
-                alert(
-                  size
-                    ? `Added ${product.name} (${size}) to cart!`
-                    : "Pick a size first!",
-                )
-              }
-              className="mt-8 w-full rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-lg hover:scale-[1.02] transition-transform"
-            >
-              Add to Cart
-            </button>
+            {product.slug === "boxy-tee" ? (
+              <button
+                disabled
+                className="mt-8 w-full rounded-full bg-muted px-8 py-4 text-lg font-bold text-muted-foreground shadow-lg cursor-not-allowed"
+              >
+                Unavailable
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  alert(
+                    size
+                      ? `Added ${product.name} (${size}) to cart!`
+                      : "Pick a size first!",
+                  )
+                }
+                className="mt-8 w-full rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-lg hover:scale-[1.02] transition-transform"
+              >
+                Add to Cart
+              </button>
+            )}
 
             <div className="mt-8 rounded-2xl bg-secondary/60 p-5 text-sm text-muted-foreground space-y-3">
               <p>
