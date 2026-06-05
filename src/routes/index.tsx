@@ -78,12 +78,8 @@ function Index() {
           <div className="flex gap-12 whitespace-nowrap animate-[marquee_25s_linear_infinite] font-display text-xl">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="flex items-center gap-12">
-                NEW DROP
-                <span className="text-pop-yellow">★</span>
                 FREE SHIPPING OVER £80
                 <span className="text-pop-pink">★</span>
-                UK ONLY
-                <span className="text-pop-green">★</span>
               </span>
             ))}
           </div>
