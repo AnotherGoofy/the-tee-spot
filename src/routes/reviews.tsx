@@ -22,6 +22,7 @@ type Review = {
   name: string;
   rating: number;
   text: string;
+  images: string[];
   createdAt: number;
 };
 
@@ -34,6 +35,7 @@ function ReviewsPage() {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [text, setText] = useState("");
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     try {
