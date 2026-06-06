@@ -207,6 +207,19 @@ function ReviewsPage() {
                   </div>
                 </div>
                 {r.text && <p className="mt-2 text-sm text-foreground/80">{r.text}</p>}
+                {r.images && r.images.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {r.images.map((src, i) => (
+                      <a key={i} href={src} target="_blank" rel="noreferrer">
+                        <img
+                          src={src}
+                          alt={`review ${i + 1}`}
+                          className="h-24 w-24 object-cover rounded-md border"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
