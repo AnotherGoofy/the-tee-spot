@@ -22,6 +22,7 @@ type Review = {
   name: string;
   rating: number;
   text: string;
+  images: string[];
   createdAt: number;
 };
 
@@ -34,6 +35,7 @@ function ReviewsPage() {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [text, setText] = useState("");
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     try {
@@ -49,6 +51,24 @@ function ReviewsPage() {
     } catch {}
   };
 
+  const handleFiles = async (files: FileList | null) => {
+    if (!files) return;
+    const readers = Array.from(files)
+      .filter((f) => f.type.startsWith("image/"))
+      .slice(0, 5)
+      .map(
+        (f) =>
+          new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(f);
+          }),
+      );
+    const results = await Promise.all(readers);
+    setImages((prev) => [...prev, ...results].slice(0, 5));
+  };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || rating < 1 || rating > 5) return;
@@ -57,12 +77,14 @@ function ReviewsPage() {
       name: name.trim(),
       rating,
       text: text.trim(),
+      images,
       createdAt: Date.now(),
     };
     save([review, ...reviews]);
     setName("");
     setRating(0);
     setText("");
+    setImages([]);
     setCreating(false);
   };
 
@@ -121,6 +143,40 @@ function ReviewsPage() {
                 rows={4}
               />
             </div>
+            <div>
+              <label className="text-sm font-semibold mb-1 block">
+                Photos (optional, up to 5)
+              </label>
+              <Input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => handleFiles(e.target.files)}
+              />
+              {images.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {images.map((src, i) => (
+                    <div key={i} className="relative">
+                      <img
+                        src={src}
+                        alt={`upload ${i + 1}`}
+                        className="h-20 w-20 object-cover rounded-md border"
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setImages((prev) => prev.filter((_, j) => j !== i))
+                        }
+                        className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-foreground text-background text-xs leading-none"
+                        aria-label="Remove image"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             <Button type="submit" disabled={!name.trim() || rating < 1}>
               Submit Review
             </Button>
@@ -151,6 +207,19 @@ function ReviewsPage() {
                   </div>
                 </div>
                 {r.text && <p className="mt-2 text-sm text-foreground/80">{r.text}</p>}
+                {r.images && r.images.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {r.images.map((src, i) => (
+                      <a key={i} href={src} target="_blank" rel="noreferrer">
+                        <img
+                          src={src}
+                          alt={`review ${i + 1}`}
+                          className="h-24 w-24 object-cover rounded-md border"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
