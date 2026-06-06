@@ -228,6 +228,17 @@ function ReviewsPage() {
                     ))}
                   </div>
                 )}
+                <CommentSection
+                  review={r}
+                  onAdd={(comment) => {
+                    const next = reviews.map((x) =>
+                      x.id === r.id
+                        ? { ...x, comments: [...(x.comments ?? []), comment] }
+                        : x,
+                    );
+                    save(next);
+                  }}
+                />
               </li>
             ))}
           </ul>
