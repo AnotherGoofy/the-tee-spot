@@ -17,12 +17,20 @@ export const Route = createFileRoute("/reviews")({
   component: ReviewsPage,
 });
 
+type Comment = {
+  id: string;
+  name: string;
+  text: string;
+  createdAt: number;
+};
+
 type Review = {
   id: string;
   name: string;
   rating: number;
   text: string;
   images: string[];
+  comments?: Comment[];
   createdAt: number;
 };
 
@@ -220,12 +228,80 @@ function ReviewsPage() {
                     ))}
                   </div>
                 )}
+                <CommentSection
+                  review={r}
+                  onAdd={(comment) => {
+                    const next = reviews.map((x) =>
+                      x.id === r.id
+                        ? { ...x, comments: [...(x.comments ?? []), comment] }
+                        : x,
+                    );
+                    save(next);
+                  }}
+                />
               </li>
             ))}
           </ul>
         )}
       </main>
       <SiteFooter />
+    </div>
+  );
+}
+
+function CommentSection({
+  review,
+  onAdd,
+}: {
+  review: Review;
+  onAdd: (comment: Comment) => void;
+}) {
+  const [name, setName] = useState("");
+  const [text, setText] = useState("");
+  const comments = review.comments ?? [];
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !text.trim()) return;
+    onAdd({
+      id: crypto.randomUUID(),
+      name: name.trim(),
+      text: text.trim(),
+      createdAt: Date.now(),
+    });
+    setName("");
+    setText("");
+  };
+
+  return (
+    <div className="mt-4 border-t pt-4">
+      {comments.length > 0 && (
+        <ul className="space-y-2 mb-3">
+          {comments.map((c) => (
+            <li key={c.id} className="text-sm">
+              <span className="font-semibold">{c.name}: </span>
+              <span className="text-foreground/80">{c.text}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2">
+        <Input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your name"
+          className="sm:w-40"
+        />
+        <Input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Add a comment..."
+          className="flex-1"
+        />
+        <Button type="submit" size="sm" disabled={!name.trim() || !text.trim()}>
+          Post
+        </Button>
+      </form>
     </div>
   );
 }
