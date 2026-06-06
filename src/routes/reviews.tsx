@@ -143,6 +143,40 @@ function ReviewsPage() {
                 rows={4}
               />
             </div>
+            <div>
+              <label className="text-sm font-semibold mb-1 block">
+                Photos (optional, up to 5)
+              </label>
+              <Input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => handleFiles(e.target.files)}
+              />
+              {images.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {images.map((src, i) => (
+                    <div key={i} className="relative">
+                      <img
+                        src={src}
+                        alt={`upload ${i + 1}`}
+                        className="h-20 w-20 object-cover rounded-md border"
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setImages((prev) => prev.filter((_, j) => j !== i))
+                        }
+                        className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-foreground text-background text-xs leading-none"
+                        aria-label="Remove image"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             <Button type="submit" disabled={!name.trim() || rating < 1}>
               Submit Review
             </Button>
