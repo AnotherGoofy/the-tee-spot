@@ -16,6 +16,12 @@ export function SiteHeader() {
           >
             Home
           </Link>
+          <Link
+            to="/reviews"
+            className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+          >
+            Reviews
+          </Link>
         </nav>
         <div className="flex items-center gap-4 text-foreground">
           <span className="text-sm font-semibold">GBP</span>
