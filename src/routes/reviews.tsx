@@ -51,6 +51,24 @@ function ReviewsPage() {
     } catch {}
   };
 
+  const handleFiles = async (files: FileList | null) => {
+    if (!files) return;
+    const readers = Array.from(files)
+      .filter((f) => f.type.startsWith("image/"))
+      .slice(0, 5)
+      .map(
+        (f) =>
+          new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(f);
+          }),
+      );
+    const results = await Promise.all(readers);
+    setImages((prev) => [...prev, ...results].slice(0, 5));
+  };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || rating < 1 || rating > 5) return;
@@ -59,12 +77,14 @@ function ReviewsPage() {
       name: name.trim(),
       rating,
       text: text.trim(),
+      images,
       createdAt: Date.now(),
     };
     save([review, ...reviews]);
     setName("");
     setRating(0);
     setText("");
+    setImages([]);
     setCreating(false);
   };
 
