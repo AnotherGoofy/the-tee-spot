@@ -17,12 +17,20 @@ export const Route = createFileRoute("/reviews")({
   component: ReviewsPage,
 });
 
+type Comment = {
+  id: string;
+  name: string;
+  text: string;
+  createdAt: number;
+};
+
 type Review = {
   id: string;
   name: string;
   rating: number;
   text: string;
   images: string[];
+  comments?: Comment[];
   createdAt: number;
 };
 
