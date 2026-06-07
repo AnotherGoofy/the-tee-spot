@@ -256,6 +256,7 @@ function CommentSection({
   review: Review;
   onAdd: (comment: Comment) => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const comments = review.comments ?? [];
@@ -275,33 +276,48 @@ function CommentSection({
 
   return (
     <div className="mt-4 border-t pt-4">
-      {comments.length > 0 && (
-        <ul className="space-y-2 mb-3">
-          {comments.map((c) => (
-            <li key={c.id} className="text-sm">
-              <span className="font-semibold">{c.name}: </span>
-              <span className="text-foreground/80">{c.text}</span>
-            </li>
-          ))}
-        </ul>
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="text-sm font-medium text-primary hover:underline"
+      >
+        {expanded
+          ? "Hide comments"
+          : comments.length > 0
+            ? `View comments (${comments.length})`
+            : "View comments"}
+      </button>
+
+      {expanded && (
+        <>
+          {comments.length > 0 && (
+            <ul className="space-y-2 mt-3">
+              {comments.map((c) => (
+                <li key={c.id} className="text-sm">
+                  <span className="font-semibold">{c.name}: </span>
+                  <span className="text-foreground/80">{c.text}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2 mt-3">
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              className="sm:w-40"
+            />
+            <Input
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Add a comment..."
+              className="flex-1"
+            />
+            <Button type="submit" size="sm" disabled={!name.trim() || !text.trim()}>
+              Post
+            </Button>
+          </form>
+        </>
       )}
-      <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2">
-        <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Your name"
-          className="sm:w-40"
-        />
-        <Input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Add a comment..."
-          className="flex-1"
-        />
-        <Button type="submit" size="sm" disabled={!name.trim() || !text.trim()}>
-          Post
-        </Button>
-      </form>
     </div>
   );
 }
