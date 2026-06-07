@@ -22,6 +22,7 @@ type Comment = {
   name: string;
   text: string;
   createdAt: number;
+  hidden?: boolean;
 };
 
 type Review = {
@@ -259,7 +260,7 @@ function CommentSection({
   const [expanded, setExpanded] = useState(false);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
-  const comments = review.comments ?? [];
+  const comments = (review.comments ?? []).filter((c) => !c.hidden);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
