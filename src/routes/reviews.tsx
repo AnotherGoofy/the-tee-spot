@@ -22,6 +22,7 @@ type Comment = {
   name: string;
   text: string;
   createdAt: number;
+  hidden?: boolean;
 };
 
 type Review = {
